@@ -26,10 +26,10 @@ function Changeprofile() {
   const [showWarning, setShowWarning] = useState(false);
   const [showWarningText, setShowWarningText] = useState(false);
   const [changeSuccess, setChangeSuccess] = useState(false);
-  const user2 = useUser();
+  const user = useUser();
   const { isDark, setRender, render } = useDarkContext();
   const dispatch = useDispatch();
-  // Fix this
+// Fix this
   const { firstname, lastname, gender, age, city } = user;
 
   const req = async () => {
