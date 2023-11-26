@@ -41,7 +41,9 @@ function Cart() {
       },
     ];
   }, []);
-
+  
+  console.log(cart)
+console.log(cartData)
   if (!cart.length) return <EmptyCart />;
   return (
     <div className={`${isDark ? "" : "bg-gray-200"} px-4 py-3 h-screen `}>

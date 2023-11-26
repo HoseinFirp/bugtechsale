@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ function LoginForm() {
   const[errorMessage,setErrorMessage]=useState('')
   const dispatch = useDispatch();
   const { isDark } = useDarkContext();
-
+const navigate = useNavigate()
   const req = async () => {
     setIsLoading(true);
     setShowError(false)
@@ -89,7 +89,7 @@ function LoginForm() {
           autoComplete="username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          disabled={isLoading}
+          disabled={isLoading || showLogin}
           placeholder="E-Mail"
           className={`p-2 pr-4 pl-4 rounded ${
             isDark ? "" : "bg-gray-300 text-gray-700" 
@@ -108,21 +108,22 @@ function LoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          disabled={isLoading}
+          disabled={isLoading || showLogin}
         />
       </div>
       {showLogin?(
-        <Link to={"/cart"}>
+        
         <button
           size="large"
           disabled={isLoading}
           className={`border rounded-lg pr-2 pl-2 pt-1 pb-1  flex items-center gap-1 ${
             isDark ? "" : "bg-gray-400 text-gray-800 hover:bg-gray-300" 
           } transition`}
+          onClick={()=>navigate(-1)}
         >
-          {!isLoading ? <HiShoppingCart /> : null}{!isLoading ? "Go Back To Cart" : "Loading..."}
+          {!isLoading ? <HiShoppingCart /> : null}{!isLoading ? "Continue" : "Loading..."}
         </button>
-      </Link>
+      
       ):(
 <div className="flex gap-8">
         

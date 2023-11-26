@@ -1,11 +1,4 @@
-import {
-  // BrowserRouter,
-  // Routes,
-  // Route,
-  Outlet,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CreateOrder, {
   action as createOrderAction,
@@ -15,17 +8,9 @@ import { Settings } from "./pages/settings";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
-
 import Login from "./pages/Login";
-// import GetAllProduct from "./Products/GetAllProduct";
 import ProductById from "./Products/ProductById";
 import Cart from "./features/cart/Cart";
-// import {   useQuery } from 'react-query'
-// import { useSelector } from "react-redux";
-// import { getCurrentQuantityById } from "./features/cart/cartSlice";
-// import { createContext, useState } from "react";
-import Order from "./features/order/Order";
-import GetProfile from "./pages/GetProfile";
 import Signup from "./pages/Signup";
 import AboutUs from "./pages/AboutUs";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -40,11 +25,6 @@ import Submit from "./pages/Submit";
 import GetAllOrders from "./pages/GetAllOrders";
 import GetOneOrder from "./pages/GetOneOrder";
 import { dispatch } from "./store";
-// import GetAllProduct from "./Products/GetAllProduct";
-// import CreateOrder from "./features/order/CreateOrder";
-// import { Provider } from "react-redux";
-// import { combineReducers, createStore } from "@reduxjs/toolkit";
-// import ProductById from "./Products/ProductById";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,144 +52,141 @@ function SettingLayOut() {
   );
 }
 
-const router = createBrowserRouter([
-  {
-    element: <AppLayOut />,
-    errorElement: <PageNotFound />,
-
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/aboutus",
-        element: <AboutUs />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/submit",
-        element: <Submit />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: `/orders/:cart_id`,
-        element: <GetOneOrder />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/orders/:cart_id",
-        element: <GetAllOrders />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/orders",
-        element: <GetAllOrders />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        element: <ProductById />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-        errorElement: <PageNotFound />,
-      },
-
-      {
-        path: "cart",
-        element: <Cart />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "/address",
-        element: <CreateOrder />,
-        action: createOrderAction,
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "list/orders",
-        element: <Order />,
-
-        errorElement: <PageNotFound />,
-      },
-
-      {
-        path: "checkout",
-        element: <Checkout />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        path: "getpro",
-        element: <GetProfile />,
-
-        errorElement: <PageNotFound />,
-      },
-      {
-        element: <SettingLayOut />,
-        errorElement: <PageNotFound />,
-
-        children: [
-          {
-            path: "settings",
-            element: <Settings />,
-            errorElement: <PageNotFound />,
-          },
-          {
-            path: "settings/changeprofile",
-            element: <Changeprofile />,
-            errorElement: <PageNotFound />,
-          },
-          {
-            path: "settings/changepassword",
-            element: <ChangePassword />,
-
-            errorElement: <PageNotFound />,
-          },
-          {
-            path: "settings/changeavatar",
-            element: <ChangeAvatar />,
-
-            errorElement: <PageNotFound />,
-          },
-        ],
-      },
-    ],
-  },
-]);
-
 const DarkContext = createContext({});
 export const useDarkContext = () => useContext(DarkContext);
 
 function App() {
-  // const [cartCount, setCartCount] = useState(0);
-  // const [isLogin, setIsLogin] = useState(false);
-  // const [token, setToken] = useState("");
-  // const [products, setProducts] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+  const user = useUser();
+  useEffect(() => {
+    if (user.token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [user.token]);
 
+  const router = createBrowserRouter([
+    {
+      element: <AppLayOut />,
+      errorElement: <PageNotFound />,
+
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/aboutus",
+          element: isLogin ? <AboutUs /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/submit",
+          element: <Submit />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: `/orders/:cart_id`,
+          element: isLogin ? <GetOneOrder /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/orders/:cart_id",
+          element: isLogin ? <GetAllOrders /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/orders",
+          element: isLogin ? <GetAllOrders /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/profile",
+          element: isLogin ? <Profile /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          element: <ProductById />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+          errorElement: <PageNotFound />,
+        },
+
+        {
+          path: "cart",
+          element: <Cart />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          path: "/address",
+          element: isLogin ? <CreateOrder /> : <PageNotFound />,
+          action: createOrderAction,
+          errorElement: <PageNotFound />,
+        },
+        // {
+        //   path: "list/orders",
+        //   element: <Order />,
+
+        //   errorElement: <PageNotFound />,
+        // },
+
+        {
+          path: "checkout",
+          element: isLogin ? <Checkout /> : <PageNotFound />,
+
+          errorElement: <PageNotFound />,
+        },
+        {
+          element: <SettingLayOut />,
+          errorElement: <PageNotFound />,
+
+          children: [
+            {
+              path: "settings",
+              element: isLogin ? <Settings /> : <PageNotFound />,
+              errorElement: <PageNotFound />,
+            },
+            {
+              path: "settings/changeprofile",
+              element: isLogin ? <Changeprofile /> : <PageNotFound />,
+              errorElement: <PageNotFound />,
+            },
+            {
+              path: "settings/changepassword",
+              element: isLogin ? <ChangePassword /> : <PageNotFound />,
+
+              errorElement: <PageNotFound />,
+            },
+            {
+              path: "settings/changeavatar",
+              element: isLogin ? <ChangeAvatar /> : <PageNotFound />,
+
+              errorElement: <PageNotFound />,
+            },
+          ],
+        },
+      ],
+    },
+  ]);
   const [isDark, setIsDark] = useState(true);
   const [render, setRender] = useState(false);
-  const user = useUser();
 
   useEffect(() => {
     const req = async () => {
