@@ -1,15 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  updateAddress,
-  updateAge,
-  updateCity,
+
   updateData,
-  updateFirstname,
-  updateGender,
-  updateLastname,
-  updatePhoneNumber,
-  updatePostalCode,
+
   useUser,
 } from "../features/user/userSlice";
 import Loading from "../alerts/Loading";
@@ -27,13 +21,13 @@ function Changeprofile() {
   const [showWarning, setShowWarning] = useState(false);
   const [showWarningText, setShowWarningText] = useState(false);
   const [changeSuccess, setChangeSuccess] = useState(false);
-  const { isDark, setRender, render } = useDarkContext();
+  const { isDark } = useDarkContext();
   const dispatch = useDispatch();
   // Fix this
   // const { firstname, lastname, gender, age, city } = user;
 
   const req = async () => {
-    setRender(true);
+    
     setIsLoading(true);
     setShowWarning(false);
     try {

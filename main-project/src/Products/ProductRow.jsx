@@ -2,7 +2,7 @@ import {  useState } from "react";
 import ProductById from "./ProductById";
 import { useDarkContext } from "../App";
 
-function ProductRow({ data, products, opened, onPress }) {
+function ProductRow({ data, opened, onPress }) {
   const [short, setShort] = useState(false);
   const { isDark } = useDarkContext();
   return (

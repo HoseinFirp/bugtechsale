@@ -1,13 +1,10 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { updateData, useUser } from "../features/user/userSlice";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+
+import {  useUser } from "../features/user/userSlice";
+
 import { useDarkContext } from "../App";
 
 function Profile() {
-  const { isDark ,setRender,render} = useDarkContext();
-const [firstname,setFirstname]=useState('')
+  const { isDark } = useDarkContext();
 
   const user = useUser();
 

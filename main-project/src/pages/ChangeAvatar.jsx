@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { updateData, updateProfile, useUser } from "../features/user/userSlice";
+import { updateData,  useUser } from "../features/user/userSlice";
 import Loading from "../alerts/Loading";
 import { useDispatch } from "react-redux";
 import { useDarkContext } from "../App";

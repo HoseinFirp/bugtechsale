@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { action } from "../../features/order/CreateOrder";
 
 export const getUsersFromServer = createAsyncThunk(
   "users/getUsersFromServer",

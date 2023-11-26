@@ -1,9 +1,8 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import ProductRow from "./ProductRow";
 import Warning from "../alerts/Warning";
 import Loading from "../alerts/Loading";
-import { useDarkContext } from "../App";
 
 // const ProductContext = createContext()
 
@@ -12,7 +11,6 @@ const GetAllProduct = () => {
   const [showWarning, setShowWarning] = useState(false);
   const [openedProductId, setOpenedProductId] = useState(undefined);
   const [showLoading, setShowLoading] = useState(false);
-  const { isDark } = useDarkContext();
   
   useEffect(function () {
     async function req() {

@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
-import { useEffect } from 'react';
+
 import { createClient } from "@supabase/supabase-js";
 
 //https://dclaevazetcjjkrzczpc.supabase.co
@@ -14,29 +13,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default supabase;
 
 
-// useEffect(
-//   function () {
-//     async function req() {
-//       try {
-//         const { data } = await axios.get(
-//           "http://kzico.runflare.run/product/"
-//         );
-//         setProducts(data);
-//       } catch (error) {
-//         setShowWarning(true);
-//       }
-//     }
-//     req();
-//   },
-//   [setProducts]
-// );
-// axios.post(
-//   "http://kzico.runflare.run/user/login",
-//   {
-//     email: "email||username",
-//     password: "password",
-//   }
-// )
 
 
 export async function loginApi({ email, password }) {

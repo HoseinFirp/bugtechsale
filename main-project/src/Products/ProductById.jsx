@@ -1,16 +1,14 @@
 import { HiMiniShoppingCart } from "react-icons/hi2";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../pages/cart/CartSlice";
-import { Link } from "react-router-dom";
 import { getCurrentQuantityById } from "../features/cart/cartSlice";
 import UpdateItemQuantity from "../features/cart/UpdateItemQuantity";
 import DeleteItem from "../features/cart/DeleteItem";
 import { useDarkContext } from "../App";
 
-function ProductById({ data, ShowProducts }) {
+function ProductById({ data }) {
   const dispatch = useDispatch();
-  const { _id, name, unitPrice, ingredients, soldOut, imageUrl } = data;
+  const { _id, unitPrice } = data;
   const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
   const { isDark } = useDarkContext();

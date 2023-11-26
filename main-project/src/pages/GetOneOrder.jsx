@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useUser } from "../features/user/userSlice";
 import { useEffect, useState } from "react";
-import ProductRow from "../Products/ProductRow";
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useDarkContext } from "../App";
-import { getCart, useCart } from "../features/cart/cartSlice";
+import { useCart } from "../features/cart/cartSlice";
 import Loading from "../alerts/Loading";
 import Warning from "../alerts/Warning";
-import { useSelector } from "react-redux";
 
 function GetOneOrder() {
   const { isDark } = useDarkContext();

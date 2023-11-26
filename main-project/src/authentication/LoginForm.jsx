@@ -4,7 +4,7 @@ import { Form, Link } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { updateToken, useUser, updateData } from "../features/user/userSlice";
+import { updateToken } from "../features/user/userSlice";
 import Loading from "../alerts/Loading";
 import { HiFingerPrint, HiKey, HiShoppingCart } from "react-icons/hi2";
 import { useDarkContext } from "../App";
@@ -16,10 +16,8 @@ function LoginForm() {
   const [showLogin, setShowLogin] = useState(false);
   const [showError,setShowError]=useState(false)
   const[errorMessage,setErrorMessage]=useState('')
-  const user = useUser();
   const dispatch = useDispatch();
   const { isDark } = useDarkContext();
-  const { token } = useUser();
 
   const req = async () => {
     setIsLoading(true);

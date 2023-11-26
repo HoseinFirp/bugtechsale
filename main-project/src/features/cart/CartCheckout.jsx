@@ -1,14 +1,10 @@
-import { useSelector } from "react-redux";
 import { formatCurrency } from "../../utils/helpers";
-import DeleteItem from "./DeleteItem";
-import UpdateItemQuantity from "./UpdateItemQuantity";
-import { getCurrentQuantityById } from "./cartSlice";
+
 import QuantityItemCheckout from "./QuantityItemCheckout";
 
 function CartCheckout({ data }) {
-  const { productId, name, quantity, unitPrice, totalPrice } = data;
+  const { productId, name, quantity, unitPrice } = data;
 
-  const currentQuantity = useSelector(getCurrentQuantityById(productId));
 
   return (
     <li className="py-3 px-10 sm:flex sm:items-center sm:justify-between">
