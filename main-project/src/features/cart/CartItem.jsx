@@ -6,7 +6,7 @@ import { getCurrentQuantityById } from "./cartSlice";
 // import { useEffect, useMemo } from "react";
 
 function CartItem({ data }) {
-  const { productId, name, quantity, unitPrice, totalPrice } = data;
+  const { productId, name, quantity, unitPrice } = data;
   const currentQuantity = useSelector(getCurrentQuantityById(productId));
 
   return (
@@ -16,7 +16,7 @@ function CartItem({ data }) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p className="text-sm font-bold">
-          {formatCurrency(totalPrice ? totalPrice : unitPrice)}
+          {formatCurrency( unitPrice*quantity)}
         </p>
 
         <UpdateItemQuantity productId={productId} currentQuantity={quantity} />

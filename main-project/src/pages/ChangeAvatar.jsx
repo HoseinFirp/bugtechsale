@@ -3,8 +3,11 @@ import { useState } from "react";
 import { updateData, updateProfile, useUser } from "../features/user/userSlice";
 import Loading from "../alerts/Loading";
 import { useDispatch } from "react-redux";
+import { useDarkContext } from "../App";
 
 function ChangeAvatar() {
+  const { isDark } = useDarkContext();
+
   const [error, setError] = useState("");
   const [showWarning, setShowWarning] = useState(false);
   const [changeSuccess, setChangeSuccess] = useState(false);
@@ -103,7 +106,7 @@ function ChangeAvatar() {
         <form>
           <input onChange={(e) => setPic(e.target.files[0])} type="file" />
         </form>
-        <button type="submit" onClick={req} className="btn">
+        <button type="submit" onClick={req} className={`${isDark ? "" : "bg-gray-300 text-gray-700 hover:bg-gray-400 border-none"} btn`}>
           Change avatar
         </button>
       </div>

@@ -93,7 +93,7 @@ function ChangePassword() {
           <label className={`sm:basis-40 ${isDark ? "" : "text-gray-700"}`}>Old Password</label>
           <input
           className={`p-2 pr-4 pl-4 rounded ${
-            isDark ? "" : "bg-gray-400 text-gray-700"
+            isDark ? "" : "bg-gray-300 text-gray-700"
           }`}
             id="one"
             type="password"
@@ -104,7 +104,7 @@ function ChangePassword() {
           <label className={`sm:basis-40 ${isDark ? "" : "text-gray-700"}`}>New Password</label>
           <input
           className={`p-2 pr-4 pl-4 rounded ${
-            isDark ? "" : "bg-gray-400 text-gray-700"
+            isDark ? "" : "bg-gray-300 text-gray-700"
           }`}
             id="two"
             type="password"
@@ -115,7 +115,7 @@ function ChangePassword() {
           <label className={`sm:basis-40 ${isDark ? "" : "text-gray-700"}`}>Confirm Password</label>
           <input
           className={`p-2 pr-4 pl-4 rounded ${
-            isDark ? "" : "bg-gray-400 text-gray-700"
+            isDark ? "" : "bg-gray-300 text-gray-700"
           }`}
             id="three"
             type="password"
@@ -123,7 +123,7 @@ function ChangePassword() {
           />
         </div>
   
-        <button className="btn" onClick={req}>
+        <button className={`btn ${isDark ? "" : "bg-gray-300 text-gray-700 hover:bg-gray-400 border-none"} `} onClick={req}>
           ChangePassword
         </button>
         </div>

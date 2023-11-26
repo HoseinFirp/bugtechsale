@@ -44,7 +44,7 @@ function Cart() {
 
   if (!cart.length) return <EmptyCart />;
   return (
-    <div className={`${isDark ? "" : "bg-gray-200"} px-4 py-3 h-screen`}>
+    <div className={`${isDark ? "" : "bg-gray-200"} px-4 py-3 h-screen `}>
       <Link to="/">
         <button
           className={`btn  ${
@@ -62,7 +62,7 @@ function Cart() {
           isDark ? "" : "text-gray-900"
         } mt-7 text-xl font-semibold`}
       >
-        Your cart <span className={`font-extrabold`}>{user.firstname}</span> :
+        Your cart <span className={`font-extrabold`}>{user.data.firstname}</span> :
       </h2>
 
       <ul

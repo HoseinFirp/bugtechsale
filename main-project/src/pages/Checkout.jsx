@@ -50,7 +50,19 @@ function Checkout() {
     setShowDone(true);
     req()
   }
-
+  const cartData = cart.reduce((arr, c) => {
+    if (arr.filter((_c) => _c.name === c.name).length) return arr;
+    return [
+      ...arr,
+      {
+        ...c,
+        quantity: cart
+          .filter((i) => i.name === c.name)
+          .reduce((acc, c) => acc + c.quantity, 0),
+      },
+    ];
+  }, []);
+console.log(cart)
   return (
     <div className={`pt-5 h-screen ${isDark ? "" : "bg-gray-200"}`}>
       {showDone ? (
@@ -77,7 +89,7 @@ function Checkout() {
               isDark ? "" : "text-gray-900"
             } mt-3 divide-y  divide-stone-200 border-b`}
           >
-            {cart.map((data) => (
+            {cartData.map((data) => (
               <CartCheckout data={data} key={data.productId} />
             ))}
           </ul>

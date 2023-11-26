@@ -17,20 +17,20 @@ import { useDarkContext } from "../App";
 import { useDispatch } from "react-redux";
 
 function Changeprofile() {
+  const user = useUser();
   const [firstName, setFirstname] = useState("");
-  const [lastName, setLastname] = useState("");
-  const [genderSet, setGender] = useState("");
-  const [ageSet, setAge] = useState("");
-  const [citySet, setCity] = useState("");
+  const [lastName, setLastname] = useState(`${user.data.lastname}`);
+  const [gender, setGender] = useState(`${user.data.gender}`);
+  const [age, setAge] = useState(`${user.data.age}`);
+  const [city, setCity] = useState(`${user.data.city}`);
   const [isLoading, setIsLoading] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [showWarningText, setShowWarningText] = useState(false);
   const [changeSuccess, setChangeSuccess] = useState(false);
-  const user = useUser();
   const { isDark, setRender, render } = useDarkContext();
   const dispatch = useDispatch();
-// Fix this
-  const { firstname, lastname, gender, age, city } = user;
+  // Fix this
+  // const { firstname, lastname, gender, age, city } = user;
 
   const req = async () => {
     setRender(true);
@@ -40,8 +40,8 @@ function Changeprofile() {
       const { data } = await axios.put(
         "http://kzico.runflare.run/user/change-profile",
         {
-          firstname: `${firstname}`,
-          lastname: `${lastname}`,
+          firstname: `${firstName}`,
+          lastname: `${lastName}`,
           gender: `${gender}`,
           age: `${age}`,
           city: `${city}`,
@@ -80,7 +80,7 @@ function Changeprofile() {
   };
 
   return (
-    <div className=" flex flex-col items-center">
+    <div className=" flex flex-col items-center z-20">
       {isLoading ? (
         <div className="mt-5">
           <Loading />
@@ -126,21 +126,21 @@ function Changeprofile() {
           <span>Your profile changed successfuly!</span>
         </div>
       ) : null}
-      <div className="ml-14 mt-10 mb-5 flex flex-col gap-5  items-center">
+      <div className="ml-14 mt-10 mb-5 flex flex-col gap-5  items-center ">
         <div className="flex items-center gap-5 w-full">
           <label className={`sm:basis-40 ${isDark ? "" : "text-gray-700"}`}>
             First name
           </label>
           <input
-            className={`p-2 pr-4 pl-4 rounded ${
-              isDark ? "" : "bg-gray-400 text-gray-800"
+            className={`p-2 z-20 pr-4 pl-4 rounded ${
+              isDark ? "" : "bg-gray-300 text-gray-800"
             }`}
             id="one"
             type="text"
             defaultValue={user.data.firstname}
             // onChange={(e) => setFirstname(e.target.value)}
             onChange={(e) => {
-              onChange1(e);
+              setFirstname(e.target.value);
             }}
           />
         </div>
@@ -150,14 +150,14 @@ function Changeprofile() {
           </label>
           <input
             className={`p-2 pr-4 pl-4 rounded ${
-              isDark ? "" : "bg-gray-400 text-gray-700"
+              isDark ? "" : "bg-gray-300 text-gray-700"
             }`}
             id="two"
             type="text"
             defaultValue={user.data.lastname}
             // onChange={(e) => setLastname(e.target.value)}
             onChange={(e) => {
-              onChange2(e);
+                setLastname(e.target.value);
             }}
           />
         </div>
@@ -167,14 +167,14 @@ function Changeprofile() {
           </label>
           <input
             className={`p-2 pr-4 pl-4 rounded ${
-              isDark ? "" : "bg-gray-400 text-gray-700"
+              isDark ? "" : "bg-gray-300 text-gray-700"
             }`}
             id="three"
             type="text"
             defaultValue={user.data.gender}
             // onChange={(e) => setGender(e.target.value)}
             onChange={(e) => {
-              onChange3(e);
+              setGender(e.target.value);
             }}
           />
         </div>
@@ -184,14 +184,14 @@ function Changeprofile() {
           </label>
           <input
             className={`p-2 pr-4 pl-4 rounded ${
-              isDark ? "" : "bg-gray-400 text-gray-700"
+              isDark ? "" : "bg-gray-300 text-gray-700"
             }`}
             id="four"
             type="text"
             defaultValue={user.data.age}
             // onChange={(e) => setAge(e.target.value)}
             onChange={(e) => {
-              onChange4(e);
+              setAge(e.target.value);
             }}
           />
         </div>
@@ -201,18 +201,18 @@ function Changeprofile() {
           </label>
           <input
             className={`p-2 pr-4 pl-4 rounded ${
-              isDark ? "" : "bg-gray-400 text-gray-700"
+              isDark ? "" : "bg-gray-300 text-gray-700"
             }`}
             id="five"
             type="text"
             defaultValue={user.data.city}
             // onChange={(e) => setCity(e.target.value)}
             onChange={(e) => {
-              onChange5(e);
+              setCity(e.target.value);
             }}
           />
         </div>
-        <button onClick={req} className="btn">
+        <button onClick={req} className={`btn mr-14 ${isDark ? "" : "bg-gray-300 text-gray-700 hover:bg-gray-400 border-none"}`}>
           Save your changes
         </button>
       </div>

@@ -17,12 +17,12 @@ function CartCheckout({ data }) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p className="text-sm font-bold">
-          {formatCurrency(totalPrice ? totalPrice : unitPrice)}
+          {formatCurrency( unitPrice *quantity)}
         </p>
 
         <QuantityItemCheckout
           pizzaId={productId}
-          currentQuantity={currentQuantity}
+          currentQuantity={quantity}
         />
       </div>
     </li>

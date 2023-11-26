@@ -34,7 +34,7 @@ export const Navbar = () => {
   useEffect(() => {
     setUserPic(user.data.image);
   }, [user.data.image]);
-console.log(user.data.image)
+
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   const totalCartPrice = useSelector(getTotalCartPrice);
 
@@ -45,7 +45,7 @@ console.log(user.data.image)
     dispatch(clearCart());
   }
   return (
-    <div className={`navbar ${isDark?'bg-base-200':'bg-gray-300'} sticky top-0 z-10`}>
+    <div className={`z-30 navbar ${isDark?'bg-base-200':'bg-gray-300'} sticky top-0 z-10`}>
       <div className="navbar-start flex gap-2">
         <div className="dropdown">
           <label tabIndex={0} className={`btn ${isDark?'btn-ghost':'bg-gray-300 text-base-200 border-none hover:bg-indigo-300'} btn-circle`}>
@@ -167,7 +167,7 @@ console.log(user.data.image)
                     </Link>
                   </li>
                   <li>
-                    <Link to="/settings" className={`${isDark?'':'text-gray-600  hover:text-gray-950 hover:bg-gray-400'}`}>
+                    <Link to="/settings/changeprofile" className={`${isDark?'':'text-gray-600  hover:text-gray-950 hover:bg-gray-400'}`}>
                       <HiMiniCog6Tooth />
                       Settings
                     </Link>

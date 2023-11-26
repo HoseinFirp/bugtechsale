@@ -34,6 +34,8 @@ function GetAllOrders() {
             },
           }
         );
+
+
         console.log(data);
         setProducts(data);
         dispatch(updateProducts(data))
@@ -45,10 +47,11 @@ function GetAllOrders() {
       }
     }
     req();
+    
   }, [user.token, setProducts,dispatch ]);
   console.log(products);
   return (
-    <div className={`${isDark ? "" : "bg-gray-200"} h-screen pt-20`}>
+    <div className={`${isDark ? "" : "bg-gray-200"} h-full pt-20`}>
       {showLoading ? (
         <div className="flex justify-center mt-10">
           <Loading />
@@ -56,22 +59,22 @@ function GetAllOrders() {
       ) : showWarning ? (
         <Warning />
       ) : (
-        <div className="grid grid-cols-4 justify-items-center justify-center mr-10 ml-10 gap-x-5 gap-y-10">
+        <div className="grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  justify-items-center justify-center mr-10 ml-10 gap-x-5 gap-y-10">
           {products.map((data) => (
             <div
               className={`${
                 isDark ? "bg-base-200" : "bg-gray-300"
-              } p-5 rounded-xl cursor-pointer`}
+              } p-5 rounded-xl cursor-pointer w-full flex flex-col`}
               key={data._id}
               onClick={() => navigate(`${data._id}`)}
             >
               <p className={`${isDark ? "" : "text-gray-900"}`}>
-                Payment ID : {data._id}
+                Product name : {data.orderItems[0].product.name}
               </p>
               <p className={`${isDark ? "" : "text-gray-900"}`}>
                 Payment Method : {data.paymentMethod}
               </p>
-              <p className={`text-2xl ${isDark ? "" : "text-gray-900"}`}>
+              <p className={`text-2xl ${isDark ? "" : "text-gray-900"} `}>
                 Total Price : {data.totalPrice} €
               </p>
             </div>

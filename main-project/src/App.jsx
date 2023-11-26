@@ -34,13 +34,12 @@ import Changeprofile from "./pages/Changeprofile";
 import SettingSidebar from "./pages/SettingSidebar";
 import ChangePassword from "./pages/ChangePassword";
 import ChangeAvatar from "./pages/ChangeAvatar";
-import { useDispatch } from "react-redux";
 import { updateData, useUser } from "./features/user/userSlice";
 import axios from "axios";
 import Submit from "./pages/Submit";
 import GetAllOrders from "./pages/GetAllOrders";
 import GetOneOrder from "./pages/GetOneOrder";
-import store, { dispatch } from "./store";
+import { dispatch } from "./store";
 // import GetAllProduct from "./Products/GetAllProduct";
 // import CreateOrder from "./features/order/CreateOrder";
 // import { Provider } from "react-redux";
@@ -67,7 +66,7 @@ function AppLayOut() {
 
 function SettingLayOut() {
   return (
-    <div className="flex">
+    <div className="flex ">
       <SettingSidebar />
     </div>
   );
