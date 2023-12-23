@@ -78,7 +78,7 @@ function App() {
         },
         {
           path: "/aboutus",
-          element: isLogin ? <AboutUs /> : <PageNotFound />,
+          element:  <AboutUs /> ,
 
           errorElement: <PageNotFound />,
         },

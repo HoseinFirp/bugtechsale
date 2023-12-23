@@ -4,8 +4,6 @@ import QuantityItemCheckout from "./QuantityItemCheckout";
 
 function CartCheckout({ data }) {
   const { productId, name, quantity, unitPrice } = data;
-
-
   return (
     <li className="py-3 px-10 sm:flex sm:items-center sm:justify-between">
       <p className="mb-1 sm:mb-0">

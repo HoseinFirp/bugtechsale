@@ -93,6 +93,10 @@ console.log(cart)
               <CartCheckout data={data} key={data.productId} />
             ))}
           </ul>
+
+            <p className={`${
+              isDark ? "" : "text-gray-900"
+            } mt-10 divide-y  divide-stone-200 ml-10`}>Address : {user.address}</p>
           <div className="flex gap-5 ml-5 mt-10 items-center">
             <Link to={"/cart"}>
               <button
