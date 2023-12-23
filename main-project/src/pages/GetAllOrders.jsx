@@ -36,7 +36,7 @@ function GetAllOrders() {
         );
 
 
-        console.log(data);
+        
         setProducts(data);
         dispatch(updateProducts(data))
         setShowLoading(false);
@@ -49,7 +49,6 @@ function GetAllOrders() {
     req();
     
   }, [user.token, setProducts,dispatch ]);
-  console.log(products);
   return (
     <div className={`${isDark ? "" : "bg-gray-200"} h-full pt-20`}>
       {showLoading ? (
@@ -73,6 +72,9 @@ function GetAllOrders() {
               </p>
               <p className={`${isDark ? "" : "text-gray-900"}`}>
                 Payment Method : {data.paymentMethod}
+              </p>
+              <p className={`${isDark ? "" : "text-gray-900"}`}>
+                Address : {data.shippingAddress.address}
               </p>
               <p className={`text-2xl ${isDark ? "" : "text-gray-900"} `}>
                 Total Price : {data.totalPrice} €

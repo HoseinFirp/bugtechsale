@@ -5,6 +5,7 @@ import { useDarkContext } from "../App";
 function ProductRow({ data, opened, onPress }) {
   const [short, setShort] = useState(false);
   const { isDark } = useDarkContext();
+  
   return (
     <>
       {opened ? (

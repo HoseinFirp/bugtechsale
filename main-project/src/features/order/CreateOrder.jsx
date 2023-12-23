@@ -169,19 +169,19 @@ function CreateOrder() {
         <div className="flex justify-center">
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
 
-          <Link to={"/checkout"}>
+          
             <button
-              disabled={!address || !city || !phoneNumber || !postalCode}
+              disabled={ (!address || !city || !phoneNumber || !postalCode )?true:false }
               type="submit"
               className={`${
                 !address || !city || !phoneNumber || !postalCode
-                  ? "bg-gray-600 "
+                  ? "bg-gray-600 cursor-default"
                   : "bg-green-600 hover:bg-green-800"
               } btn pt-2 pb-2 pr-3 pl-3 border text-gray-200 rounded-xl  border-none`}
-            >
+            ><Link to={`${!address || !city || !phoneNumber || !postalCode?'':'/checkout'}`}>
               Next
-            </button>
           </Link>
+            </button>
         </div>
       </Form>
     </div>

@@ -8,7 +8,7 @@ import { useDarkContext } from "../App";
 
 function ProductById({ data }) {
   const dispatch = useDispatch();
-  const { _id, unitPrice } = data;
+  const { _id, unitPrice,countInStock } = data;
   const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
   const { isDark } = useDarkContext();
@@ -53,6 +53,7 @@ function ProductById({ data }) {
               <UpdateItemQuantity
                 productId={_id}
                 currentQuantity={currentQuantity}
+                countInStock={countInStock}
               />
               <DeleteItem productId={_id} />
             </div>

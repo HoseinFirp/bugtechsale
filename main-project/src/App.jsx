@@ -119,12 +119,12 @@ function App() {
         },
         {
           path: "/signup",
-          element: <Signup />,
+          element: !isLogin ? <Signup /> : <PageNotFound />,
           errorElement: <PageNotFound />,
         },
         {
           path: "/login",
-          element: <Login />,
+          element: !isLogin ? <Login /> : <PageNotFound />,
           errorElement: <PageNotFound />,
         },
 
